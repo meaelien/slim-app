@@ -6,6 +6,17 @@ use Rcalicdan\Blade\Blade;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
+
+if( !function_exists('env') ){
+    function env($key, $default=false){
+        $value = getenv($key);
+
+        throw_when(!$value && !$default, "");
+        
+        return  $value or $default;
+    }
+}
+
 if( !function_exists('base_path') ){
     function base_path($path=''){
         return __DIR__."/../{$path}";
